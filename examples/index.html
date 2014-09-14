@@ -15,13 +15,16 @@
     <script type="text/javascript" src="../src/detect2d.js"></script>
     <script type="text/javascript">
         window.onload = function () {
-            var recNameElement = document.getElementById("recName");
-            var recScoreElement = document.getElementById("recScore");
-            var detect2d = new Detect2d();
+            var recNameElement, recScoreElement, detect2d;
+            recNameElement = document.getElementById("recName");
+            recScoreElement = document.getElementById("recScore");
+            detect2d = new Detect2d();
+
             document.addEventListener("DID_NOT_RECOGNIZE_GESTURE", function () {
                 recNameElement.value = "Not recognized";
                 recScoreElement.value = -;
             }, false);
+
             document.addEventListener("RECOGNIZED_GESTURE", function (data) {
                 var result = data.detail;
                 recNameElement.value = result.Name;
