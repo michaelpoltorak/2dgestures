@@ -12,9 +12,34 @@
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
 
     <script type="text/javascript" src="../src/3rdparty/unistroke-recognizer.js"></script>
+    <script type="text/javascript" src="../src/detect2d.js"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            var recNameElement = document.getElementById("recName");
+            var recScoreElement = document.getElementById("recScore");
+            var detect2d = new Detect2d();
+            document.addEventListener("DID_NOT_RECOGNIZE_GESTURE", function () {
+                recNameElement.value = "Not recognized";
+                recScoreElement.value = -;
+            }, false);
+            document.addEventListener("RECOGNIZED_GESTURE", function (data) {
+                var result = data.detail;
+                recNameElement.value = result.Name;
+                recScoreElement.value = result.Score;
+            }, false);
+
+        };
+    </script>
 </head>
 
 <body>
+    <div>Recognised:
+        <input type="text" id="recName" />
+    </div>
+    <div>
+        Confidence:
+        <input type="text" id="recScore" />
+    </div>
 </body>
 
 </html>
