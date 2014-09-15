@@ -16,16 +16,22 @@
             margin: 0;
             padding: 0;
             position: fixed;
-            width: 100%;
-            margin: 2px;
+            width: 90%;
+            margin: 5%;
         }
         input {
             width: 65%;
         }
+        .box,
+        #box {} #box .label {
+            background: #ddd;
+            color: white;
+            text-align: center;
+            vertical-align: middle;
+        }
         #box {
             background: #eee;
-            margin: 5%;
-            width: 90%;
+            width: 100%;
             height: 250px;
         }
     </style>
@@ -56,10 +62,12 @@
 </head>
 
 <body>
-    <div>Recognised:
+    <div class="box">Recognised:
         <input type="text" id="name" />
     </div>
-    <div id="box"></div>
+    <div id="box">
+        <div class="label">Touchbox</div>
+    </div>
 </body>
 
 </html>
