@@ -10,6 +10,9 @@ It's in vanilla javascript.
 
 It comes preloaded with 16 gestures, but custom ones can easily be added.
 
+### Usage
+    new Detect2d(doc); //Begin detection
+    
 The $1 Unistroke Recognizer was originally created by:
 
 Jacob O. Wobbrock, University of Washington,
