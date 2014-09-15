@@ -1,5 +1,6 @@
-function Detect2d() {
+function Detect2d(element) {
 
+    var doc = element || window;
     // Setup touch events
     var touchstart, touchend, touchmove, touchPoints = [],
         recogizer = new DollarRecognizer();
@@ -9,16 +10,13 @@ function Detect2d() {
         console.log("start ", evt);
     };
     touchend = function (evt) {
+        console.log("end ", evt);
         if (touchPoints.length > 0) {
             var result = recogizer.Recognize(touchPoints, false); //do they resemble a $1-gesture?
-            if (result.Score > 0.8) {
-                //console.log("result ", result);
-                document.dispatchEvent(new CustomEvent("RECOGNIZED_GESTURE", {
-                    "detail": result
-                }));
-            } else {
-                document.dispatchEvent(new CustomEvent("DID_NOT_RECOGNIZE_GESTURE"));
-            }
+            console.log("result ", result);
+            doc.dispatchEvent(new CustomEvent("RECOGNIZER_DONE", {
+                "detail": result
+            }));
             touchPoints = [];
         }
     };
@@ -26,18 +24,19 @@ function Detect2d() {
         var point,
             touch = evt.touches[0]; // getting the first touch event from the touchList
         point = new Point(touch.clientX, touch.clientY); //create a new Point from x,y. (Defined in the unistroke-recognizer.js file)
+        console.log("Point ", point);
         touchPoints.push(point); //Store the point for later
     };
 
     //Setup the event listeners
-    document.addEventListener("touchstart", touchstart, false);
-    document.addEventListener("touchend", touchend, false);
-    document.addEventListener("touchmove", touchmove, false);
+    doc.addEventListener("touchstart", touchstart, false);
+    doc.addEventListener("touchend", touchend, false);
+    doc.addEventListener("touchmove", touchmove, false);
 
     //Remove event listeners
     this.removeEvents = function () {
-        document.removeEventListener("touchstart", start, false);
-        document.removeEventListener("touchend", end, false);
-        document.removeEventListener("touchmove", move, false);
+        doc.removeEventListener("touchstart", start, false);
+        doc.removeEventListener("touchend", end, false);
+        doc.removeEventListener("touchmove", move, false);
     };
 }
