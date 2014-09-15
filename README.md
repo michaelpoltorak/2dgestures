@@ -12,8 +12,9 @@ It's vanilla javascript, by the way.
 It comes preloaded with 16 gestures, but custom ones can easily be added.
 
 ### Usage
-    var el = document.getElementById("detectBox");
-    new Detect2d(el); //Begin detection (set el = null for whole screen)
+    // DOM element within which to setup recogniser - use el = null for whole screen
+    var el = document.getElementById("detectBox"); 
+    new Detect2d(el); //Begin detection
     ...
     // Listen for recogniser done events and go...
     doc.addEventListener("RECOGNIZER_DONE", function (data) { 
