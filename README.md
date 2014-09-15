@@ -13,6 +13,10 @@ It comes preloaded with 16 gestures, but custom ones can easily be added.
 ### Usage
     var el = document.getElementById("detectBox");
     new Detect2d(el); //Begin detection (set el = null for whole screen)
+    ...
+    doc.addEventListener("RECOGNIZER_DONE", function (data) { // Add an event listener for recogniser results
+        var result = data.detail;
+    });
     
 The $1 Unistroke Recognizer was originally created by:
 
