@@ -11,38 +11,55 @@
     <meta name="author" content="">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
 
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            position: fixed;
+            width: 100%;
+            margin: 2px;
+        }
+        input {
+            width: 65%;
+        }
+        #box {
+            background: #eee;
+            margin: 5%;
+            width: 90%;
+            height: 250px;
+        }
+    </style>
+
     <script type="text/javascript" src="../src/3rdparty/unistroke-recognizer.js"></script>
     <script type="text/javascript" src="../src/detect2d.js"></script>
     <script type="text/javascript">
         window.onload = function () {
-            var recNameElement, recScoreElement, detect2d;
-            recNameElement = document.getElementById("recName");
-            recScoreElement = document.getElementById("recScore");
-            detect2d = new Detect2d();
+            var detect2d,
+                doc = document.getElementById("box"), // DOM element to dectect inside - defaults to entire screen
+                nameElement = document.getElementById("name"),
+                scoreElement = document.getElementById("score");
 
-            document.addEventListener("DID_NOT_RECOGNIZE_GESTURE", function () {
-                recNameElement.value = "Not recognized";
-                recScoreElement.value = -;
-            }, false);
 
-            document.addEventListener("RECOGNIZED_GESTURE", function (data) {
+            doc.addEventListener("RECOGNIZER_DONE", function (data) { // Add an event listener for recogniser results
                 var result = data.detail;
-                recNameElement.value = result.Name;
-                recScoreElement.value = result.Score;
+                if (result.Score > 0.8) {
+                    nameElement.value = result.Name + " (" + result.Score.toFixed(2) + ")"; //Display name and score
+                } else {
+                    nameElement.value = "Not recognised";
+                }
+
             }, false);
 
+            detect2d = new Detect2d(doc); //Begin detection
         };
     </script>
 </head>
 
 <body>
     <div>Recognised:
-        <input type="text" id="recName" />
+        <input type="text" id="name" />
     </div>
-    <div>
-        Confidence:
-        <input type="text" id="recScore" />
-    </div>
+    <div id="box"></div>
 </body>
 
 </html>
