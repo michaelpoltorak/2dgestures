@@ -11,7 +11,8 @@ It's in vanilla javascript.
 It comes preloaded with 16 gestures, but custom ones can easily be added.
 
 ### Usage
-    new Detect2d(doc); //Begin detection
+    var el = document.getElementById("detectBox");
+    new Detect2d(el); //Begin detection (set el = null for whole screen)
     
 The $1 Unistroke Recognizer was originally created by:
 
