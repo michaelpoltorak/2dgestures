@@ -18,7 +18,9 @@ It comes preloaded with 16 gestures, but custom ones can easily be added.
     ...
     // Listen for recogniser done events and go...
     doc.addEventListener("RECOGNIZER_DONE", function (data) { 
-        var result = data.detail;
+        var result = data.detail, name, score;
+        name = result.Name; //Name of detected gesture, if one
+        score = result.Score;//Its score (btw. 0 and 1);
     });
     
 ### Credits
