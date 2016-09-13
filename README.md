@@ -15,7 +15,8 @@ It's vanilla javascript, by the way.
     // DOM element within which to setup recogniser - use el = null for whole screen
     var el = document.getElementById("detectBox"); 
     new Detect2d(el);                                           // Begin detection
-    ...
+
+    
     // Listen for recogniser done events and go do recognising stuff...
     doc.addEventListener("RECOGNIZER_DONE", function (data) { 
         var result = data.detail, name, score;
