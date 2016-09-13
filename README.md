@@ -14,14 +14,17 @@ It's vanilla javascript, by the way.
 ### Usage
     // DOM element within which to setup recogniser - use el = null for whole screen
     var el = document.getElementById("detectBox"); 
-    new Detect2d(el);                                           // Begin detection
-
+    
+    // Begin detection
+    new Detect2d(el);                                           
+    
+#
     
     // Listen for recogniser done events and go do recognising stuff...
     doc.addEventListener("RECOGNIZER_DONE", function (data) { 
         var result = data.detail, name, score;
-        name = result.Name;                                     // Name of detected gesture, if one
-        score = result.Score;                                   // Its score (btw. 0 and 1);
+        name = result.Name;						// Name of detected gesture, if one
+        score = result.Score;                  	// Its score (btw. 0 and 1);
     });
     
 ### Credits
