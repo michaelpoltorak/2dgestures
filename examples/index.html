@@ -18,27 +18,38 @@
             position: fixed;
             width: 90%;
             margin: 5%;
+            font-size: 120%
         }
 
         input {
-            width: 65%;
+            width: 35%;
+        }
+        .box.draw {
+            margin-top: 15px;
+            height: 250px;
+            background: #eee;
         }
 
-        .box,
-        #box {
+        .box .label {
+            font-size: 150%;
+            color: #bbb;
+        }
+        .box.reg {
+            font-size: 110%;
+            color: #888;
         }
 
-        #box .label {
-            background: #ddd;
-            color: white;
+        .box {
+            width: 100%;
             text-align: center;
             vertical-align: middle;
+            margin: 5px 0;
         }
-
-        #box {
-            background: #eee;
-            width: 100%;
-            height: 250px;
+        .success {
+            color: green;
+        }
+        .none {
+            color: red;
         }
     </style>
 
@@ -47,7 +58,7 @@
     <script type="text/javascript">
         window.onload = function () {
             var detect2d,
-                    doc = document.getElementById("box"), // DOM element to dectect inside - defaults to entire screen
+                    doc = document.getElementsByClassName("draw")[0], // DOM element to dectect inside - defaults to entire screen
                     nameElement = document.getElementById("name"),
                     scoreElement = document.getElementById("score");
 
@@ -55,9 +66,9 @@
             doc.addEventListener("RECOGNIZER_DONE", function (data) { // Add an event listener for recogniser results
                 var result = data.detail;
                 if (result.Score > 0.8) {
-                    nameElement.value = result.Name + " (" + result.Score.toFixed(2) + ")"; //Display name and score
+                    nameElement.innerHTML = "<span class='success'>" + result.Name + " (" + result.Score.toFixed(2) + ")</span>"; //Display name and score
                 } else {
-                    nameElement.value = "Not recognised";
+                    nameElement.innerHTML = "<span class='none'>None</span>";
                 }
 
             }, false);
@@ -69,12 +80,11 @@
 </head>
 
 <body>
-<div class="box">Recognised:
-    <input type="text" id="name"/>
+<div class="box draw">
+    <div class="label">Draw a figure in this box</div>
 </div>
-<div id="box">
-    <div class="label">Touchbox</div>
-</div>
+<div class="box reg">Figure recognised: <span id="name"></span></div>
+
 </body>
 
 </html>

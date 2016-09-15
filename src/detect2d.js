@@ -7,10 +7,10 @@ function Detect2d(element) {
 
     //Each touch event is declared as separate function in order to be able to remove it again w. removeEventListener
     touchstart = function (evt) {
-        console.log("start ", evt);
+        //console.log("start ", evt);
     };
     touchend = function (evt) {
-        console.log("end ", evt);
+        //console.log("end ", evt);
         if (touchPoints.length > 0) {
             var result = recogizer.Recognize(touchPoints, false); //do they resemble a $1-gesture?
             console.log("result ", result);
@@ -24,7 +24,7 @@ function Detect2d(element) {
         var point,
             touch = evt.touches[0]; // getting the first touch event from the touchList
         point = new Point(touch.clientX, touch.clientY); //create a new Point from x,y. (Defined in the unistroke-recognizer.js file)
-        console.log("Point ", point);
+        //console.log("Point ", point);
         touchPoints.push(point); //Store the point for later
     };
 
