@@ -14,7 +14,6 @@ It's vanilla javascript, by the way.
 ### Usage
     // DOM element within which to setup recogniser - use el = null for whole screen
     var el = document.getElementById("detectBox"); 
-    new Detect2d(el);   //Begin detection
 
     // Begin detection
     new Detect2d(el);                                           
