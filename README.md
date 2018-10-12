@@ -1,7 +1,7 @@
-#2d js touch screen gestures
+# 2d js touch screen gestures
 This repo contains javascript stuff for recognising gestures made on touch screens.
 
-##$1 Unistroke Recognizer for js
+## $1 Unistroke Recognizer for js
 
 This is a javascript implementation for touch screens of the $1 gesture recogniser.
 
